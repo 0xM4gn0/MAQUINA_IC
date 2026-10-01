@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Clínica Aurora Salud{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="{{ url_for('index') }}" class="brand">
+                <span class="brand-mark">✚</span>
+                <span class="brand-text">Clínica <strong>Aurora Salud</strong></span>
+            </a>
+            <nav class="main-nav">
+                <a href="{{ url_for('index') }}">Inicio</a>
+                <a href="{{ url_for('about') }}">Sobre nosotros</a>
+                <a href="{{ url_for('servicios') }}">Servicios</a>
+                <a href="{{ url_for('news') }}">Noticias</a>
+                <a href="{{ url_for('team') }}">Plantilla</a>
+                <a href="{{ url_for('portal_home') }}" class="nav-cta">Área de empleados</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-col">
+                <h4>Clínica Aurora Salud</h4>
+                <p>Av. de la Alameda, 42 · 28010 Madrid</p>
+                <p>Tel. 910 000 000 · info@aurorasalud.example</p>
+            </div>
+            <div class="footer-col">
+                <h4>Horario</h4>
+                <p>Lunes a viernes: 8:00 – 20:00</p>
+                <p>Sábados: 9:00 – 14:00</p>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces</h4>
+                <p><a href="{{ url_for('about') }}">Sobre nosotros</a></p>
+                <p><a href="{{ url_for('team') }}">Nuestro equipo</a></p>
+                <p><a href="{{ url_for('news') }}">Noticias</a></p>
+            </div>
+        </div>
+        <div class="footer-note container">
+            <p>© 2026 Clínica Aurora Salud. Todos los derechos reservados.
+            <span class="lab-tag">Entorno de formación · Clínica ficticia · Datos inventados</span></p>
+        </div>
+    </footer>
+</body>
+</html>

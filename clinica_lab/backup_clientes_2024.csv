@@ -1,0 +1,9 @@
+id,nombre,email,telefono,dni,tarjeta_sanitaria,poliza,saldo_pendiente
+1,Marta Ruiz Delgado,marta.ruiz@example.com,600111222,12345678A,BDNI1234567,POL-9001,0.00
+2,Juan Pedro Salas,jp.salas@example.com,600222333,23456789B,BDNI2345678,POL-9002,120.50
+3,Lucía Fernández Mora,lucia.fmora@example.com,600333444,34567890C,BDNI3456789,POL-9003,0.00
+4,Diego Ramos Ortega,diego.ramos@example.com,600444555,45678901D,BDNI4567890,POL-9004,45.00
+5,Carmen Vidal Soto,carmen.vidal@example.com,600555666,56789012E,BDNI5678901,POL-9005,300.75
+6,Andrés Gil Peña,andres.gil@example.com,600666777,67890123F,BDNI6789012,POL-9006,0.00
+7,Rosa Marín Cano,rosa.marin@example.com,600777888,78901234G,BDNI7890123,POL-9007,89.90
+8,Víctor Santos Luna,victor.santos@example.com,600888999,89012345H,BDNI8901234,POL-9008,15.00

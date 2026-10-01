@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Área de empleados — Clínica Aurora Salud{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container login-wrap">
+        <div class="login-card">
+            <div class="ico" style="margin:0 auto 16px;">🔒</div>
+            <h2 style="text-align:center;">Área de empleados</h2>
+            <p class="lead" style="text-align:center;">Acceso exclusivo para el personal de la clínica.</p>
+
+            {% if error %}
+                <div class="aviso-sql" style="background:#fff4f2;">{{ error }}</div>
+            {% endif %}
+
+            <form method="post" action="{{ url_for('portal_login') }}">
+                <label>Usuario
+                    <input type="text" name="username" autocomplete="username" required>
+                </label>
+                <label>Contraseña
+                    <input type="password" name="password" autocomplete="current-password" required>
+                </label>
+                <button type="submit" class="btn-form">Iniciar sesión</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

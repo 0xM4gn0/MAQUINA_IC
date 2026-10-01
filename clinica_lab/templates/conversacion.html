@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Conversación — AuroraBot{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="portal-bar">
+            <div>
+                {% if conv %}
+                <h2 style="margin:0;">Conversación #{{ conv['id'] }}</h2>
+                <p class="lead" style="margin:4px 0 0;">{{ conv['titulo'] }}</p>
+                {% else %}
+                <h2 style="margin:0;">Conversación no encontrada</h2>
+                {% endif %}
+            </div>
+            <a href="{{ url_for('portal_chatbot') }}" class="btn-form" style="width:auto;">← Mis conversaciones</a>
+        </div>
+
+        {% if conv %}
+        <div class="chat-box">
+            {% for m in mensajes %}
+            <div class="chat-msg {{ 'bot' if m['autor'] == 'bot' else 'user' }}">
+                <span class="who">{{ 'AuroraBot' if m['autor'] == 'bot' else 'Usuario' }}
+                    <span class="ts">{{ m['creado_en'] }}</span>
+                </span>
+                <p>{{ m['texto'] }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <form method="post" action="{{ url_for('portal_conversacion', conv_id=conv['id']) }}" class="chat-form">
+            <input type="text" name="mensaje" placeholder="Escribe un mensaje a AuroraBot..." required autofocus>
+            <button type="submit" class="btn-form" style="width:auto;">Enviar</button>
+        </form>
+        {% else %}
+        <p class="sin-resultados">No existe ninguna conversación con ese identificador.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

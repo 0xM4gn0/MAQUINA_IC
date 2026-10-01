@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Clínica Aurora Salud — Cuidamos de ti{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1>Tu salud, en las mejores manos</h1>
+        <p>En Clínica Aurora Salud combinamos un equipo médico multidisciplinar
+        con tecnología de diagnóstico avanzada para ofrecerte una atención
+        cercana, ágil y de calidad.</p>
+        <a href="{{ url_for('servicios') }}" class="btn">Ver nuestros servicios</a>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>Por qué elegirnos</h2>
+        <p class="lead">Más de 20 años cuidando de las familias de Madrid con un
+        modelo de atención centrado en el paciente.</p>
+        <div class="grid grid-3">
+            <div class="card">
+                <div class="ico">🩺</div>
+                <h3>Equipo especializado</h3>
+                <p>Profesionales colegiados en cardiología, traumatología,
+                pediatría y más de una docena de especialidades.</p>
+            </div>
+            <div class="card">
+                <div class="ico">⚡</div>
+                <h3>Diagnóstico rápido</h3>
+                <p>Resultados de pruebas en tiempo récord gracias a nuestro
+                laboratorio propio y a la historia clínica digital.</p>
+            </div>
+            <div class="card">
+                <div class="ico">💙</div>
+                <h3>Trato humano</h3>
+                <p>Acompañamiento personalizado en cada fase del tratamiento,
+                con citas sin esperas y seguimiento continuo.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section alt">
+    <div class="container">
+        <h2>Nuestras especialidades</h2>
+        <p class="lead">Consulta el catálogo completo y filtra por área médica.</p>
+        <div class="grid grid-3">
+            <div class="card"><h3>Cardiología</h3><p>Electrocardiogramas, pruebas de esfuerzo y ecocardiografía Doppler.</p></div>
+            <div class="card"><h3>Traumatología</h3><p>Diagnóstico por imagen e infiltraciones para el dolor articular.</p></div>
+            <div class="card"><h3>Pediatría</h3><p>Revisiones de desarrollo y calendario vacunal infantil.</p></div>
+        </div>
+        <p style="margin-top:26px;"><a href="{{ url_for('servicios') }}">Ver todos los servicios →</a></p>
+    </div>
+</section>
+{% endblock %}

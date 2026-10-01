@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}AuroraBot — Portal interno{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="portal-bar">
+            <div>
+                <h2 style="margin:0;">🤖 AuroraBot</h2>
+                <p class="lead" style="margin:4px 0 0;">
+                    Tus conversaciones con el asistente interno
+                </p>
+            </div>
+            <a href="{{ url_for('portal_home') }}" class="btn-form" style="width:auto;">← Volver al portal</a>
+        </div>
+
+        <div class="conv-list">
+            {% for c in conversaciones %}
+            <a class="conv-item" href="{{ url_for('portal_conversacion', conv_id=c['id']) }}">
+                <span class="conv-id">#{{ c['id'] }}</span>
+                <span class="conv-tit">{{ c['titulo'] }}</span>
+                <span class="conv-fecha">{{ c['creado_en'] }}</span>
+            </a>
+            {% else %}
+            <p class="sin-resultados">No tienes conversaciones todavía.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

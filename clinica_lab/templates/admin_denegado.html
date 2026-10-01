@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Acceso denegado — Administración{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container" style="text-align:center;max-width:560px;">
+        <div class="ico" style="margin:0 auto 18px;width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:1.7rem;background:var(--bg-alt);">🔒</div>
+        <h2>Acceso restringido</h2>
+        <p class="lead">Esta sección está reservada al Administrador de Sistemas.
+        Tu cuenta ({{ user['username'] }} · {{ user['rol'] }}) no tiene permisos.</p>
+        <a href="{{ url_for('portal_home') }}" class="btn-form" style="width:auto;display:inline-block;">← Volver al portal</a>
+    </div>
+</section>
+{% endblock %}

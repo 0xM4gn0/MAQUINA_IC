@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Sobre nosotros — Clínica Aurora Salud{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1>Sobre nosotros</h1>
+        <p>Un centro médico de referencia comprometido con la excelencia
+        asistencial y el trato humano.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container grid grid-2">
+        <div>
+            <h2>Nuestra historia</h2>
+            <p>Clínica Aurora Salud abrió sus puertas en 2004 como un pequeño
+            centro de atención familiar. Dos décadas después, somos un hospital
+            de día con más de 40 profesionales y una docena de especialidades,
+            manteniendo intacta la vocación con la que nacimos: poner a la
+            persona en el centro.</p>
+            <p>Cada año atendemos a más de 30.000 pacientes y realizamos cerca
+            de 12.000 pruebas diagnósticas en nuestras propias instalaciones.</p>
+        </div>
+        <div>
+            <h2>Misión y valores</h2>
+            <p>Trabajamos para ofrecer una medicina accesible, humana y basada
+            en la evidencia. Nuestros pilares son la seguridad del paciente, la
+            transparencia y la mejora continua.</p>
+            <p>Formamos parte activa de la comunidad médica, colaboramos en
+            proyectos de investigación clínica y apostamos por la formación
+            constante de nuestro equipo.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section alt">
+    <div class="container">
+        <h2>En cifras</h2>
+        <div class="grid grid-3" style="margin-top:24px;">
+            <div class="card"><h3>+20 años</h3><p>De experiencia asistencial.</p></div>
+            <div class="card"><h3>+40 profesionales</h3><p>Colegiados en 12 especialidades.</p></div>
+            <div class="card"><h3>30.000 pacientes/año</h3><p>Confían en nosotros.</p></div>
+        </div>
+        <p style="margin-top:26px;">¿Quieres conocer al equipo?
+        <a href="{{ url_for('team') }}">Visita nuestra plantilla →</a></p>
+    </div>
+</section>
+{% endblock %}

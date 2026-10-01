@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+clinica.db
+venv/
+.venv/
+documentos/

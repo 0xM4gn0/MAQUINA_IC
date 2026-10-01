@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Portal interno — Clínica Aurora Salud{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="portal-bar">
+            <div>
+                <h2 style="margin:0;">Portal interno</h2>
+                <p class="lead" style="margin:4px 0 0;">
+                    Sesión iniciada como <strong>{{ user['nombre_completo'] }}</strong>
+                    ({{ user['rol'] }} · <code>{{ user['username'] }}</code>)
+                </p>
+            </div>
+            <a href="{{ url_for('portal_logout') }}" class="btn-form" style="width:auto;">Cerrar sesión</a>
+        </div>
+
+        <div class="grid grid-3" style="margin-top:30px;">
+            <a class="card tool-card" href="{{ url_for('portal_chatbot') }}">
+                <div class="ico">🤖</div>
+                <h3>AuroraBot</h3>
+                <p>Asistente interno con IA compartido por todo el personal.</p>
+            </a>
+            <div class="card">
+                <div class="ico">📅</div>
+                <h3>Agenda</h3>
+                <p>Gestión de citas y pacientes. (Módulo de demostración)</p>
+            </div>
+            <div class="card">
+                <div class="ico">📁</div>
+                <h3>Recursos clínicos</h3>
+                <p>Protocolos y documentación interna. (Módulo de demostración)</p>
+            </div>
+            {% if user['rol'] == 'Administrador de Sistemas' %}
+            <a class="card tool-card" href="{{ url_for('admin_home') }}">
+                <div class="ico">⚙️</div>
+                <h3>Administración</h3>
+                <p>Panel de administración y gestor de plantillas de informe.</p>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

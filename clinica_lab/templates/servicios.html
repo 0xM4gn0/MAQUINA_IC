@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Servicios médicos — Clínica Aurora Salud{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1>Servicios médicos</h1>
+        <p>Consulta nuestro catálogo de pruebas y tratamientos. Filtra por
+        especialidad para encontrar lo que necesitas.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <h2>Catálogo de servicios</h2>
+        <p class="lead">Selecciona una categoría para filtrar los resultados.</p>
+
+        <div class="filtros">
+            <a href="{{ url_for('servicios') }}"
+               class="{{ 'activo' if categoria_activa is none else '' }}">Todos</a>
+            {% for c in categorias %}
+                <a href="{{ url_for('servicios') }}?categoria={{ c }}"
+                   class="{{ 'activo' if categoria_activa == c else '' }}">{{ c }}</a>
+            {% endfor %}
+        </div>
+
+        {% if disponible is not none %}
+            {% if disponible %}
+            <div class="disp disp-si">✓ Sí ofrecemos servicios en «{{ categoria_activa }}».</div>
+            {% else %}
+            <div class="disp disp-no">Actualmente no ofrecemos servicios en «{{ categoria_activa }}».</div>
+            {% endif %}
+        {% endif %}
+
+        {% if resultados %}
+        <table class="tabla-servicios">
+            <thead>
+                <tr>
+                    <th style="width:80px;">Ref.</th>
+                    <th>Servicio</th>
+                    <th>Especialidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in resultados %}
+                <tr>
+                    <td>{{ r['id'] }}</td>
+                    <td>{{ r['nombre'] }}</td>
+                    <td>{{ r['categoria'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% elif categoria_activa is not none %}
+            <p class="sin-resultados">No hay servicios que mostrar para esta categoría.</p>
+        {% endif %}
+
+    </div>
+</section>
+{% endblock %}

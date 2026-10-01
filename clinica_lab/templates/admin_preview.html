@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Vista previa — Administración{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="portal-bar">
+            <div>
+                <h2 style="margin:0;">Vista previa</h2>
+                <p class="lead" style="margin:4px 0 0;text-align:left;">{{ nombre }}</p>
+            </div>
+            <a href="{{ url_for('admin_home') }}" class="btn-form" style="width:auto;">← Volver</a>
+        </div>
+
+        <div class="preview-box">{{ render }}</div>
+    </div>
+</section>
+{% endblock %}

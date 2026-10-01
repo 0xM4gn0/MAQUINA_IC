@@ -1,0 +1,65 @@
+Fase 1: Reconocimiento y OSINT 
+
+Identificar al objetivo: Explorar la página web pública de la clínica (sección "Sobre nosotros", "Noticias" o "Plantilla"). 
+
+  
+
+Hallazgo: Encontrar una noticia, un artículo médico o un directorio que mencione a Dra. Anna Kournikova como trabajadora de la clínica. Esto les da un nombre de usuario potencial (por ejemplo, akournikova, anna.kournikova, etc.) que les servirá más adelante para saber qué credenciales buscar. 
+
+  
+
+Fase 2: Acceso Inicial mediante SQL Injection (SQLi) 
+
+Encontrar y explotar una vulnerabilidad de inyección SQL en la web pública para exfiltrar las credenciales de la base de datos. 
+
+Identificación del vector: La web tiene un filtro de categorías de productos (o servicios médicos) que es vulnerable a SQLi basada en uniones (UNION-based SQLi). 
+
+Explotación paso a paso: 
+
+Interceptar el tráfico: Utilizar Burp Suite para interceptar la petición HTTP que envía el filtro de categorías al servidor. 
+
+Determinar la estructura de la tabla: El alumno debe averiguar el número de columnas que devuelve la consulta original y cuáles de ellas aceptan texto. Usarán un payload en el parámetro category como: '+UNION+SELECT+NULL,'abc'-- 
+
+Exfiltración de datos: Una vez mapeada la consulta, el alumno inyecta el payload final para extraer el nombre de usuario y la contraseña de la tabla users (concatenados por el carácter ~): '+UNION+SELECT+NULL,username||'~'||password+FROM+users-- 
+
+Resultado: En la respuesta HTTP, los alumnos verán un volcado de las credenciales. Entre ellas, identificarán el usuario de la Dra. Kournikova y su contraseña. 
+
+  
+
+Fase 3: Movimiento Lateral (El Chatbot) 
+
+Con las credenciales de la Dra. Kournikova en su poder, los alumnos pueden iniciar sesión en el portal interno de empleados de la clínica. 
+
+Revisión del entorno: Dentro del portal, descubren una herramienta de Chatbot impulsada por IA que comparten todos los trabajadores de la clínica. 
+
+Fuga de información: Al revisar el historial de conversaciones compartidas (o mediante un engaño al bot), descubren que el Administrador de Sistemas de la clínica interactuó con el bot. 
+
+  
+
+Hallazgo: El administrador cometió el error humano de preguntarle al Chatbot si su nueva contraseña era segura o dejó expuestas sus credenciales al depurar un error. El alumno consigue el usuario y contraseña del Administrador. 
+
+  
+
+Fase 4: Ejecución de Código y Reverse Shell  
+
+Acceso privilegiado: Utilizando las credenciales obtenidas en la fase anterior, el alumno inicia sesión en el panel de Administración de la web. 
+
+Identificación del vector: El alumno descubre que el administrador tiene acceso a una herramienta vulnerable (por ejemplo, un panel de "Diagnóstico de Red" para hacer ping a IPs, o un apartado para subir documentos sin restricciones de extensión). 
+
+Explotación (Reverse Shell): El alumno abusa de esta funcionalidad (por ejemplo, inyectando un comando en el panel de ping) para obligar al servidor a ejecutar una Reverse Shell. 
+
+Resultado: El servidor web se conecta de vuelta a la máquina del alumno, otorgándole una consola de comandos (shell) dentro del sistema operativo del servidor. 
+
+  
+
+Fase 5: Escalada y Exfiltración de Datos (El objetivo final) 
+
+Una vez que los alumnos han conseguido la Reverse Shell y están dentro del servidor (probablemente como un usuario de bajos privilegios como www-data), comienza el robo de datos. 
+
+Exploración del servidor: Los alumnos deberán revisar los archivos de configuración de la web (por ejemplo, wp-config.php, .env, o archivos de conexión a la base de datos) para encontrar credenciales internas, o buscar en el sistema de archivos dónde se guardan las copias de seguridad. 
+
+El "Botín" (La exfiltración): Los alumnos encontrarán el objetivo final, que puede ser: 
+
+Una tabla en una base de datos interna llamada pacientes_historias_clinicas. 
+
+Un archivo tipo backup_clientes_2024.csv alojado en una carpeta interna del servidor. 
