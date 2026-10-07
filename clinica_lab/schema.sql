@@ -17,7 +17,7 @@ INSERT INTO users (username, password, nombre_completo, rol, email) VALUES
     ('lgarcia',     'clinica123',          'Laura García',         'Recepción',               'l.garcia@aurorasalud.example'),
     ('pnavarro',    'Paula.2022',          'Dra. Paula Navarro',   'Pediatra',                'p.navarro@aurorasalud.example'),
     ('rsanz',       'Rsanz#Enero',         'Roberto Sanz',         'Enfermería',              'r.sanz@aurorasalud.example'),
-    ('sysadmin',    'S3rv3r_Aur0ra#2024!', 'Administrador de Sistemas', 'Administrador de Sistemas', 'sysadmin@aurorasalud.example');
+    ('sysadmin',    'pbkdf2:sha256:1000000$R5DSVrgkdIvEqBDB$9468bee50911c0851be3f74f3f8412f8fa96d256a95bd271d65c667786922fd1', 'Administrador de Sistemas', 'Administrador de Sistemas', 'sysadmin@aurorasalud.example');
 CREATE TABLE servicios (
     id         INTEGER PRIMARY KEY AUTOINCREMENT,
     nombre     TEXT NOT NULL,

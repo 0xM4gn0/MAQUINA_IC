@@ -1,6 +1,7 @@
 import os
 import sqlite3
 from flask import Flask, render_template, render_template_string, request, session, redirect, url_for
+from werkzeug.security import check_password_hash
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DB_PATH = os.path.join(BASE_DIR, 'clinica.db')
 DOCS_DIR = os.path.join(BASE_DIR, 'documentos')
@@ -63,11 +64,19 @@ def portal_login():
         username = request.form.get('username', '')
         password = request.form.get('password', '')
         conn = get_db()
-        row = conn.execute('SELECT * FROM users WHERE username = ? AND password = ?', (username, password)).fetchone()
+        row = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
         conn.close()
         if row is not None:
-            session['usuario'] = row['username']
-            return redirect(url_for('portal_home'))
+            almacenado = row['password']
+            # Las contraseñas hasheadas (p. ej. la del sysadmin) se verifican con
+            # check_password_hash; el resto siguen en texto plano (laboratorio).
+            if almacenado.startswith(('pbkdf2:', 'scrypt:')):
+                valida = check_password_hash(almacenado, password)
+            else:
+                valida = (almacenado == password)
+            if valida:
+                session['usuario'] = row['username']
+                return redirect(url_for('portal_home'))
         error = 'Usuario o contraseña incorrectos.'
     return render_template('portal_login.html', error=error)
 
